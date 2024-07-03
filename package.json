@@ -1,0 +1,23 @@
+{
+  "name": "css-theme-plugin",
+  "version": "1.0.0",
+  "description": "css theme plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amyhuangxbd/css-theme-plugin.git"
+  },
+  "keywords": [
+    "css",
+    "theme"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amyhuangxbd/css-theme-plugin/issues"
+  },
+  "homepage": "https://github.com/amyhuangxbd/css-theme-plugin#readme"
+}
