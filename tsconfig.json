@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "declaration": true,
+      "lib": ["es2017"],
+      "module": "commonjs",
+      "target": "es6",
+      "moduleResolution": "Node",
+      "skipLibCheck": true,
+      "sourceMap": false,
+      "strict": true,
+      "removeComments": true,
+      "useUnknownInCatchVariables": false,
+      "types": ["node", "jest"],
+      "esModuleInterop": true
+    },
+    "include": ["lib"],
+    "exclude": ["node_modules"]
+  }
+  

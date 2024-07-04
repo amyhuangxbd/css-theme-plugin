@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "css theme plugin",
   "main": "index.js",
+  "module": "lib/index.js",
   "scripts": {
+    "start": "tsc -w",
     "test": "jest --coverage"
   },
   "repository": {
@@ -19,5 +21,24 @@
   "bugs": {
     "url": "https://github.com/amyhuangxbd/css-theme-plugin/issues"
   },
-  "homepage": "https://github.com/amyhuangxbd/css-theme-plugin#readme"
+  "homepage": "https://github.com/amyhuangxbd/css-theme-plugin#readme",
+  "peerDependencies": {
+    "less": ">=4.0.0",
+    "less-loader": ">=8.0.0"
+  },
+  "dependencies": {
+    "postcss": "^8.4.16",
+    "postcss-selector-namespace": "^3.0.1",
+    "webpack": "^5.92.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/less": "^3.0.3",
+    "@types/node": "^20.14.9",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "ts-jest": "^29.1.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  }
 }

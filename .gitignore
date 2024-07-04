@@ -1,0 +1,10 @@
+node_modules
+.idea
+.cache
+dist
+
+# output
+lib/**/*.js
+lib/**/*.d.ts
+package-lock.json
+coverage
