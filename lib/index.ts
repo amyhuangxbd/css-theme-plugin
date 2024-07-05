@@ -61,9 +61,7 @@ export default class CSSThemePlugin {
 
   private async lessDefaultAddictionData() {
     const variables = await this.getLessVariables();
-    return variables.reduce((pre: string, [key, value]) => {
-      return `${pre}@${key}:${value};`;
-    }, '');
+    return variables.reduce((pre: string, [key, value]) => `${pre}@${key}:${value};`, '');
   }
 
   private getLessAddictionData(
@@ -103,9 +101,11 @@ export default class CSSThemePlugin {
   apply(compiler: Compiler) {
     compiler.hooks.environment.tap(this.pluginName, () => {
       const allRules = compiler.options.module.rules as RuleSetRule[];
-      const lessRules = allRules.filter((item) => {
-        return Object.prototype.toString.call(item.test) === '[object RegExp]' && (item.test as RegExp).test('index.less');
-      });
+      const lessRules = allRules.filter(
+        (item) =>
+          Object.prototype.toString.call(item.test) === '[object RegExp]' &&
+          (item.test as RegExp).test('index.less')
+      );
       const loaderPath = path.resolve(__dirname, 'theme-var-loader.cjs');
       const loader = {
         loader: loaderPath,
@@ -117,7 +117,14 @@ export default class CSSThemePlugin {
           return;
         }
         if (!Array.isArray(ruleItem.use)) return;
-        if (ruleItem.use.find((item: any) => typeof item !== 'string' && typeof item !== 'function' && /theme-var-loader/.test(item?.loader || ''))) {
+        if (
+          ruleItem.use.some(
+            (item) =>
+              typeof item !== 'string' &&
+              typeof item !== 'function' &&
+              /theme-var-loader/.test(item?.loader || '')
+          )
+        ) {
           return;
         }
         const lessLoaderIndex = ruleItem.use.length - 1;
@@ -149,15 +156,14 @@ export default class CSSThemePlugin {
           const preName = `${this.options.themeClassPre}-`;
           const scriptContent = `
           (function(){
-             const el = document.getElementsByTagName('body');
+             const el = document.getElementsByTagName('body')[0];
              window.THEMEVARS = ${JSON.stringify(themeCache)};
              window.changeGlobalTheme = function(isDark){
                if (el && el.length) {
-                 if(isDark) el[0].setAttribute('class', '${preName}dark')
-                 else el[0].setAttribute('class', '${preName}light')
+                 el[0].setAttribute('class', '${preName}' + (isDark ? 'dark' : 'light'));
                }
              };
-             if(el) changeGlobalTheme(${this.options.initTheme === 'dark' ? 'true' : 'false'}); 
+             if(el) changeGlobalTheme(${this.options.initTheme === 'dark'});
           })()
         `;
           const newEntry = entryContent.replace(/(\(\s*\(\s*\)\s*=>\s*\{)/, `$1${scriptContent}`);
