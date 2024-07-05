@@ -33,7 +33,7 @@ export interface LoaderContext extends webpack.LoaderContext<ThemePluginOptions 
 }
 
 export default class CSSThemePlugin {
-  private readonly pluginName = 'AntdDynamicThemePlugin';
+  private readonly pluginName = 'CSSThemePlugin';
   private readonly options: ThemePluginOptions;
 
   constructor(userOptions?: Partial<ThemePluginOptions>) {
@@ -119,7 +119,7 @@ export default class CSSThemePlugin {
         if (!Array.isArray(ruleItem.use)) return;
         if (
           ruleItem.use.some(
-            (item) =>
+            (item: any) =>
               typeof item !== 'string' &&
               typeof item !== 'function' &&
               /theme-var-loader/.test(item?.loader || '')

@@ -2,8 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const ThemePlugin = require('antd-dynamic-theme-plugin');
-// const ThemePlugin = require('../index');
+const ThemePlugin = require('../index');
 
 module.exports = {
   entry: [
